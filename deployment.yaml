@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: complete-nodejs-end-to-end-deployment
+  labels:
+    app: complete-prodcution-end-to-end-nodejs-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: complete-prodcution-end-to-end-nodejs-app
+  template:
+    metadata:
+      labels:
+        app: complete-prodcution-end-to-end-nodejs-app
+    spec:
+      containers:
+      - name: complete-prodcution-end-to-end-nodejs-app
+        image: 6554932/nodejs-Todo-list-end-to-end-pipeline:1.0.0-1
+        resources:
+          limits:
+            memory: "250Mi"
+            cpu: "500n"
+        ports:
+        - containerPort: 3000
